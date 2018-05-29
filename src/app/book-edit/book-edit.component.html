@@ -1,0 +1,70 @@
+<div class="book">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+     <h2>Edit book</h2>
+    </div>
+    <div class="panel-body">
+      <form [formGroup]="rForm" (ngSubmit)="saveBook(rForm.value, book._id)" novalidate>
+        <div class="form-group">
+          <label class="col-md-4">ISBNe</label>
+          <input type="text" class="form-control" formControlName="isbn"  [(ngModel)]="book.isbn"  />
+        </div>
+        <!--
+        <div *ngIf="rForm.controls['isbn'].invalid && (rForm.controls['isbn'].dirty || rForm.controls['isbn'].touched)" class="alert alert-danger">
+          <div *ngIf="rForm.controls['isbn'].errors.required">
+            isbn is required.
+          </div>
+        </div>-->
+
+        <div class="form-group">
+          <label class="col-md-4">Author name</label>
+          <input type="text" class="form-control" formControlName="author" [(ngModel)]="book.author" />
+        </div>
+        
+        <div *ngIf="rForm.controls['author'].invalid && rForm.controls['author'].touched" class="alert alert-danger">
+          <div *ngIf="rForm.controls['author'].errors.required">
+            Author name is required.
+          </div>
+        </div>
+
+     
+        <div class="form-group">
+          <label class="col-md-4">Title</label>
+          <input type="text" class="form-control" formControlName="title" [(ngModel)]="book.title"/>
+        </div>
+        <div *ngIf="!rForm.controls['title'].valid && rForm.controls['title'].touched" class="alert alert-danger">
+          <div *ngIf="rForm.controls['title'].errors.required">
+            Title is required.
+          </div>
+          <div *ngIf="rForm.controls['title'].errors.minlength || rForm.controls['title'].errors.maxlength">
+            You must specify a title that's between {{minTitle}} and {{maxTitle}} characters.
+          </div>
+        </div>
+
+        <!-- description -->
+        <div class="form-group">
+          <label >Description</label>
+          <textarea class="form-control"  rows="6"  formControlName="description" [(ngModel)]="book.description"></textarea>
+        </div>
+        <div *ngIf="!rForm.controls['description'].valid && rForm.controls['description'].touched" class="alert alert-danger">
+          <div *ngIf="rForm.controls['description'].errors.required">
+            Description is required...
+          </div>
+          <div *ngIf="rForm.controls['description'].errors.minlength || rForm.controls['description'].errors.maxlength">
+            You must specify a description that's between {{minDescription}} and {{maxDescription}} characters.
+          </div>
+        </div>
+         
+        <div class="form-group">
+            <!--<button (click)="addCoin(name.value, price.value)" [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">Add</button> -->
+          <button class="btn btn-primary" [disabled]="!rForm.valid">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--{{ rForm.value | json }}-->
+{{ book._id}}
+
+

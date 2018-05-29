@@ -1,0 +1,40 @@
+<div *ngIf="!loading; then thenBlock; else elseBlock">this is ignored</div>
+
+<ng-template #thenBlock>
+  <div class="wait">
+   <p class="h4 text-center"> Waiting....</p>
+  </div>
+</ng-template>
+
+ <ng-template #elseBlock>
+ 
+  <div  class="books">
+    <h1>Book List - {{ books?.length || '0' }}</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Action</th>
+          <th>-</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr  *ngFor="let book of  books" [@bookState]="state">
+          <td>{{ book.title }}</td>
+          <td>{{ book.author }}</td>
+          <td>
+            <a [routerLink]="['/details', book._id]">show detail</a>
+          </td>
+          <td> 
+            <button type="button" (click)= "remove(book)" class="btn btn-danger">Delete</button>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+</div>
+
+ </ng-template>
+

@@ -1,0 +1,25 @@
+
+<div class="book">
+  <h1>{{ book.title }}</h1>
+  <dl class="list">
+    <dt>ISBN</dt>
+    <dd>{{ book.isbn }}</dd>
+    <dt>Author</dt>
+    <dd>{{ book.author }}</dd>
+    <dt>Published date</dt>
+    <dd>{{ book.published_year |  date:'full':'fr'}}</dd>
+    
+  </dl>
+ 
+  <div>
+    <p>
+      {{book.description}}
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <a [routerLink]="['/book-edit', book._id]" class="btn btn-success">EDIT</a>
+  </div>
+</div>
